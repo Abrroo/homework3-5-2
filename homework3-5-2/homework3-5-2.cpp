@@ -342,7 +342,4 @@ int main()
     get_info(&parallelogram);
     get_info(&rhombus);
 
- 
-
-
 }
