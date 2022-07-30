@@ -5,15 +5,15 @@
 class Figure
 {
 protected:
-    int count_side_quadrangle = 4;
-    int count_side_triangle = 3;
-    int count_side_none = 0;
+    const int count_side_quadrangle = 4;
+    const int count_side_triangle = 3;
+    const int count_side_none = 0;
 public:
-    virtual void print_name_figure()
+    virtual std::string get_name_figure()
     {
-        std::cout << "" << std::endl;
+        return "";
     }
-    virtual int get_c_s(int i)
+    virtual int get_sides_angles(int i)
     {
         return 1;
     }
@@ -35,15 +35,19 @@ public:
         this->B = B;
         this->C = C;
     }
-    void print_name_figure()
+    std::string get_name_figure()
     {
-        std::cout << "Треугольник:" << std::endl;
+        return "Треугольник:";
     }
-    int get_c_s(int i) override
+    int get_sides_angles(int i) override
     {
         int arr[8]{ a,b,c,0,A,B,C,0};
         int x = arr[i];
         return x;
+    }
+    int get_count_sides()
+    {
+        return count_side_triangle;
     }
 
 };
@@ -64,11 +68,11 @@ public:
         this->B = B;
         this->C = C;
     }
-    void print_name_figure()
+    std::string get_name_figure()
     {
-        std::cout << "Прямоугольный треугольник:" << std::endl;
+        return "Прямоугольный треугольник:";
     }
-    int get_c_s(int i) override
+    int get_sides_angles(int i) override
     {
         int arr[8]{ a,b,c,0,A,B,C,0 };
         int x = arr[i];
@@ -93,11 +97,11 @@ public:
         this->B = B;
         this->C = C;
     }
-    void print_name_figure()
+    std::string get_name_figure()
     {
-        std::cout << "Равнобедренный треугольник:" << std::endl;
+        return "Равнобедренный треугольник:";
     }
-    int get_c_s(int i) override
+    int get_sides_angles(int i) override
     {
         int arr[8]{ a,b,c,0,A,B,C,0 };
         int x = arr[i];
@@ -122,11 +126,11 @@ public:
         this->B = B;
         this->C = C;
     }
-    void print_name_figure()
+    std::string get_name_figure()
     {
-        std::cout << "Равносторонний треугольник::" << std::endl;
+        return "Равносторонний треугольник::";
     }
-    int get_c_s(int i) override
+    int get_sides_angles(int i) override
     {
         int arr[8]{ a,b,c,0,A,B,C,0 };
         int x = arr[i];
@@ -140,6 +144,7 @@ class Quadrangle : public Figure
 private:
     int a, b, c, d;
     int A, B, C, D;
+    int count_side_quadrangle = 4;
 public:
     Quadrangle(){}
     Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D)
@@ -153,16 +158,19 @@ public:
         this->C = C;
         this->D = D;
     }
-    void print_name_figure() override
+    std::string get_name_figure() override
     {
-        std::cout << "Четырёхугольник:" << std::endl;
+        return "Четырёхугольник:";
     }
-    int get_c_s(int i) override
+    int get_sides_angles(int i) override
     {
         int arr[8]{a,b,c,d,A,B,C,D};
         int x = arr[i];
         return x;
-
+    }
+    int get_count_sides()
+    {
+        return count_side_quadrangle;
     }
 
 };
@@ -185,11 +193,11 @@ public:
         this->C = C;
         this->D = D;
     }
-    void print_name_figure() override
+    std::string get_name_figure() override
     {
-        std::cout << "Прямоуголник:" << std::endl;
+        return "Прямоуголник:";
     }
-    int get_c_s(int i) override
+    int get_sides_angles(int i) override
     {
         int arr[8]{ a,b,c,d,A,B,C,D };
         int x = arr[i];
@@ -217,11 +225,11 @@ public:
         this->C = C;
         this->D = D;
     }
-    void print_name_figure() override
+    std::string get_name_figure() override
     {
-        std::cout << "Квадрат:" << std::endl;
+        return "Квадрат:";
     }
-    int get_c_s(int i) override
+    int get_sides_angles(int i) override
     {
         int arr[8]{ a,b,c,d,A,B,C,D };
         int x = arr[i];
@@ -249,11 +257,11 @@ public:
         this->C = C;
         this->D = D;
     }
-    void print_name_figure() override
+    std::string get_name_figure() override
     {
-        std::cout << "Параллелограмм:" << std::endl;
+        return "Параллелограмм:";
     }
-    int get_c_s(int i) override
+    int get_sides_angles(int i) override
     {
         int arr[8]{ a,b,c,d,A,B,C,D };
         int x = arr[i];
@@ -281,33 +289,32 @@ public:
         this->C = C;
         this->D = D;
     }
-    void print_name_figure() override
+    std::string get_name_figure() override
     {
-        std::cout << "Ромб:" << std::endl;
+        return "Ромб:";
     }
-    int get_c_s(int i) override
+    int get_sides_angles(int i) override
     {
         int arr[8]{ a,b,c,d,A,B,C,D };
         int x = arr[i];
         return x;
-
     }
 
 };
 
 void get_info(Figure* figure)
 {
-    figure->print_name_figure();
-    std::cout << "Стороны: a=" << figure->get_c_s(0) << " b=" << figure->get_c_s(1) << " c=" << figure->get_c_s(2);
-    if (figure->get_c_s(3) != 0 && figure->get_c_s(7) != 0)
+    std::cout << figure->get_name_figure() << std::endl;
+    std::cout << "Стороны: a=" << figure->get_sides_angles(0) << " b=" << figure->get_sides_angles(1) << " c=" << figure->get_sides_angles(2);
+    if (figure->get_sides_angles(3) != 0 && figure->get_sides_angles(7) != 0)
     {
-        std::cout << " d=" << figure->get_c_s(3);
+        std::cout << " d=" << figure->get_sides_angles(3);
     }
     std::cout << std::endl;
-    std::cout << "Углы: A=" << figure->get_c_s(4) << " B=" << figure->get_c_s(5) << " C=" << figure->get_c_s(6);
-    if (figure->get_c_s(3) != 0 && figure->get_c_s(7) != 0)
+    std::cout << "Углы: A=" << figure->get_sides_angles(4) << " B=" << figure->get_sides_angles(5) << " C=" << figure->get_sides_angles(6);
+    if (figure->get_sides_angles(3) != 0 && figure->get_sides_angles(7) != 0)
     {
-        std::cout << " D=" << figure->get_c_s(7);
+        std::cout << " D=" << figure->get_sides_angles(7);
     }
     std::cout << std::endl << std::endl;
 }
