@@ -2,20 +2,37 @@
 #include <cstring>
 #include <string>
 
+std::string make_1string(int* arr)
+{
+    std::string result = "Стороны: a=" + std::to_string(arr[0]) + " b=" + std::to_string(arr[1]) + " c=" + std::to_string(arr[2]);
+    if (arr[3] > 0)
+    {
+        result = result + " d=" + std::to_string(arr[3]);
+    }
+    return result;
+}
+
+std::string make_2string(int* arr)
+{
+    std::string result = "Углы: A=" + std::to_string(arr[4]) + " B=" + std::to_string(arr[5]) + " C=" + std::to_string(arr[6]);
+    if (arr[7] > 0)
+    {
+        result = result + " D=" + std::to_string(arr[7]);
+    }
+    return result;
+}
+
 class Figure
 {
-protected:
-    const int count_side_quadrangle = 4;
-    const int count_side_triangle = 3;
+private:
     const int count_side_none = 0;
 public:
     virtual std::string get_name_figure()
     {
         return "";
     }
-    virtual int get_sides_angles(int i)
+    virtual void print()
     {
-        return 1;
     }
 };
 
@@ -24,6 +41,7 @@ class Triangle : public Figure
 private:
     int a, b, c;
     int A, B, C;
+    const int count_side_triangle = 3;
 public:
     Triangle(){}
     Triangle(int a, int b, int c, int A, int B, int C)
@@ -39,11 +57,12 @@ public:
     {
         return "Треугольник:";
     }
-    int get_sides_angles(int i) override
+    void print() override
     {
-        int arr[8]{ a,b,c,0,A,B,C,0};
-        int x = arr[i];
-        return x;
+        int* arr = new int[8]{ a,b,c,0,A,B,C,0 };
+        std::cout << get_name_figure() << std::endl;
+        std::cout << make_1string(arr) << std::endl;
+        std::cout << make_2string(arr) << std::endl;
     }
     int get_count_sides()
     {
@@ -72,11 +91,12 @@ public:
     {
         return "Прямоугольный треугольник:";
     }
-    int get_sides_angles(int i) override
+    void print() override
     {
-        int arr[8]{ a,b,c,0,A,B,C,0 };
-        int x = arr[i];
-        return x;
+        int* arr = new int[8]{ a,b,c,0,A,B,C,0 };
+        std::cout << get_name_figure() << std::endl;
+        std::cout << make_1string(arr) << std::endl;
+        std::cout << make_2string(arr) << std::endl;
     }
 
 };
@@ -101,11 +121,12 @@ public:
     {
         return "Равнобедренный треугольник:";
     }
-    int get_sides_angles(int i) override
+    void print() override
     {
-        int arr[8]{ a,b,c,0,A,B,C,0 };
-        int x = arr[i];
-        return x;
+        int* arr = new int[8]{ a,b,c,0,A,B,C,0 };
+        std::cout << get_name_figure() << std::endl;
+        std::cout << make_1string(arr) << std::endl;
+        std::cout << make_2string(arr) << std::endl;
     }
 
 };
@@ -130,11 +151,12 @@ public:
     {
         return "Равносторонний треугольник::";
     }
-    int get_sides_angles(int i) override
+    void print() override
     {
-        int arr[8]{ a,b,c,0,A,B,C,0 };
-        int x = arr[i];
-        return x;
+        int* arr = new int[8]{ a,b,c,0,A,B,C,0 };
+        std::cout << get_name_figure() << std::endl;
+        std::cout << make_1string(arr) << std::endl;
+        std::cout << make_2string(arr) << std::endl;
     }
 
 };
@@ -162,11 +184,12 @@ public:
     {
         return "Четырёхугольник:";
     }
-    int get_sides_angles(int i) override
+    void print() override
     {
-        int arr[8]{a,b,c,d,A,B,C,D};
-        int x = arr[i];
-        return x;
+        int* arr = new int[8]{ a,b,c,d,A,B,C,D };
+        std::cout << get_name_figure() << std::endl;
+        std::cout << make_1string(arr) << std::endl;
+        std::cout << make_2string(arr) << std::endl;
     }
     int get_count_sides()
     {
@@ -197,12 +220,12 @@ public:
     {
         return "Прямоуголник:";
     }
-    int get_sides_angles(int i) override
+    void print() override
     {
-        int arr[8]{ a,b,c,d,A,B,C,D };
-        int x = arr[i];
-        return x;
-
+        int* arr = new int[8]{ a,b,c,d,A,B,C,D };
+        std::cout << get_name_figure() << std::endl;
+        std::cout << make_1string(arr) << std::endl;
+        std::cout << make_2string(arr) << std::endl;
     }
 
 };
@@ -229,12 +252,12 @@ public:
     {
         return "Квадрат:";
     }
-    int get_sides_angles(int i) override
+    void print() override
     {
-        int arr[8]{ a,b,c,d,A,B,C,D };
-        int x = arr[i];
-        return x;
-
+        int* arr = new int[8]{ a,b,c,d,A,B,C,D };
+        std::cout << get_name_figure() << std::endl;
+        std::cout << make_1string(arr) << std::endl;
+        std::cout << make_2string(arr) << std::endl;
     }
 
 };
@@ -261,12 +284,12 @@ public:
     {
         return "Параллелограмм:";
     }
-    int get_sides_angles(int i) override
+    void print() override
     {
-        int arr[8]{ a,b,c,d,A,B,C,D };
-        int x = arr[i];
-        return x;
-
+        int* arr = new int[8]{ a,b,c,d,A,B,C,D };
+        std::cout << get_name_figure() << std::endl;
+        std::cout << make_1string(arr) << std::endl;
+        std::cout << make_2string(arr) << std::endl;
     }
 
 };
@@ -293,30 +316,22 @@ public:
     {
         return "Ромб:";
     }
-    int get_sides_angles(int i) override
+    void print() override
     {
-        int arr[8]{ a,b,c,d,A,B,C,D };
-        int x = arr[i];
-        return x;
+        int* arr = new int[8]{ a,b,c,d,A,B,C,D };
+        std::cout << get_name_figure() << std::endl;
+        std::cout << make_1string(arr) << std::endl;
+        std::cout << make_2string(arr) << std::endl;
     }
+
 
 };
 
+
+
 void get_info(Figure* figure)
 {
-    std::cout << figure->get_name_figure() << std::endl;
-    std::cout << "Стороны: a=" << figure->get_sides_angles(0) << " b=" << figure->get_sides_angles(1) << " c=" << figure->get_sides_angles(2);
-    if (figure->get_sides_angles(3) != 0 && figure->get_sides_angles(7) != 0)
-    {
-        std::cout << " d=" << figure->get_sides_angles(3);
-    }
-    std::cout << std::endl;
-    std::cout << "Углы: A=" << figure->get_sides_angles(4) << " B=" << figure->get_sides_angles(5) << " C=" << figure->get_sides_angles(6);
-    if (figure->get_sides_angles(3) != 0 && figure->get_sides_angles(7) != 0)
-    {
-        std::cout << " D=" << figure->get_sides_angles(7);
-    }
-    std::cout << std::endl << std::endl;
+    figure->print();
 }
 
 int main()
