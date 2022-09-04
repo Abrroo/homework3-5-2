@@ -27,11 +27,12 @@ class Figure
 {
 private:
     const int count_side_none = 0;
-    int a = 0, b = 0, c = 0, d = 0;
-    int A = 0, B = 0, C = 0, D = 0;
+    //int a = 0, b = 0, c = 0, d = 0;
+    //int A = 0, B = 0, C = 0, D = 0;
 public:
     Figure() {}
-    Figure(int a, int b, int c, int A, int B, int C)
+   /* 
+   Figure(int a, int b, int c, int A, int B, int C)
     {
         this->a = a;
         this->b = b;
@@ -51,22 +52,31 @@ public:
         this->C = C;
         this->D = D;
     }
+    */
     virtual std::string get_name_figure()
     {
         return "";
     }
+    virtual int get_data(char x)
+    {
+        switch (x)
+        {
+        default:  return 0; break;
+        }
+        
+    }
     void print()
     {
         std::cout << get_name_figure() << std::endl;
-        std::string result1 = "Стороны: a=" + std::to_string(a) + " b=" + std::to_string(b) + " c=" + std::to_string(c);
-        if (d > 0)
+        std::string result1 = "Стороны: a=" + std::to_string(get_data('a')) + " b=" + std::to_string(get_data('b')) + " c=" + std::to_string(get_data('c'));
+        if (get_data('d') > 0)
         {
-            result1 = result1 + " d=" + std::to_string(d);
+            result1 = result1 + " d=" + std::to_string(get_data('d'));
         }
-        std::string result2 = "Углы: A=" + std::to_string(A) + " B=" + std::to_string(B) + " C=" + std::to_string(C);
-        if (D > 0)
+        std::string result2 = "Углы: A=" + std::to_string(get_data('A')) + " B=" + std::to_string(get_data('B')) + " C=" + std::to_string(get_data('C'));
+        if (get_data('D') > 0)
         {
-            result2 = result2 + " D=" + std::to_string(D);
+            result2 = result2 + " D=" + std::to_string(get_data('D'));
         }
         std::cout << result1 << std::endl;
         std::cout << result2 << std::endl << std::endl;
@@ -81,7 +91,7 @@ private:
     const int count_side_triangle = 3;
 public:
     Triangle(){}
-    Triangle(int a, int b, int c, int A, int B, int C) : Figure(a, b, c, A, B, C)
+    Triangle(int a, int b, int c, int A, int B, int C)
     {
         this->a = a;
         this->b = b;
@@ -99,6 +109,25 @@ public:
     {
         return count_side_triangle;
     }
+    int get_data(char x) override
+    {
+        switch (x)
+        {
+        case 'a': return a; break;
+        case 'b': return b; break;
+        case 'c': return c; break;
+        case 'A': return A; break;
+        case 'B': return B; break;
+        case 'C': return C; break;
+        default:  return 0; break;
+        }
+
+    }
+    void print()
+    {
+        Figure::print();
+    }
+
 
 };
 
@@ -121,6 +150,10 @@ public:
     std::string get_name_figure()
     {
         return "Прямоугольный треугольник:";
+    }
+    void print()
+    {
+        Figure::print();
     }
 
 };
@@ -145,6 +178,10 @@ public:
     {
         return "Равнобедренный треугольник:";
     }
+    void print()
+    {
+        Figure::print();
+    }
 
 };
 
@@ -168,6 +205,10 @@ public:
     {
         return "Равносторонний треугольник::";
     }
+    void print()
+    {
+        Figure::print();
+    }
 
 };
 
@@ -179,7 +220,7 @@ private:
     int count_side_quadrangle = 4;
 public:
     Quadrangle(){}
-    Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D) : Figure(a, b, c, d, A, B, C, D)
+    Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D)
     {
         this->a = a;
         this->b = b;
@@ -197,6 +238,27 @@ public:
     int get_count_sides()
     {
         return count_side_quadrangle;
+    }
+    int get_data(char x) override
+    {
+        switch (x)
+        {
+        case 'a': return a; break;
+        case 'b': return b; break;
+        case 'c': return c; break;
+        case 'd': return d; break;
+        case 'A': return A; break;
+        case 'B': return B; break;
+        case 'C': return C; break;
+        case 'D': return D; break;
+        default:  return 0; break;
+        }
+
+    }
+
+    void print()
+    {
+        Figure::print();
     }
 
 };
@@ -223,6 +285,10 @@ public:
     {
         return "Прямоуголник:";
     }
+    void print()
+    {
+        Figure::print();
+    }
 
 };
 
@@ -247,6 +313,10 @@ public:
     std::string get_name_figure() override
     {
         return "Квадрат:";
+    }
+    void print()
+    {
+        Figure::print();
     }
 
 };
@@ -273,6 +343,10 @@ public:
     {
         return "Параллелограмм:";
     }
+    void print()
+    {
+        Figure::print();
+    }
 
 };
 
@@ -297,6 +371,10 @@ public:
     std::string get_name_figure() override
     {
         return "Ромб:";
+    }
+    void print()
+    {
+        Figure::print();
     }
 };
 
@@ -340,3 +418,4 @@ int main()
     get_info(&rhombus);
 
 }
+
