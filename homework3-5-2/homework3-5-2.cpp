@@ -1,85 +1,34 @@
 ﻿#include <iostream>
 #include <cstring>
 #include <string>
-/*
-std::string make_1string(int* arr)
-{
-    std::string result = "Стороны: a=" + std::to_string(arr[0]) + " b=" + std::to_string(arr[1]) + " c=" + std::to_string(arr[2]);
-    if (arr[3] > 0)
-    {
-        result = result + " d=" + std::to_string(arr[3]);
-    }
-    return result;
-}
-
-std::string make_2string(int* arr)
-{
-    std::string result = "Углы: A=" + std::to_string(arr[4]) + " B=" + std::to_string(arr[5]) + " C=" + std::to_string(arr[6]);
-    if (arr[7] > 0)
-    {
-        result = result + " D=" + std::to_string(arr[7]);
-    }
-    return result;
-}
-*/
 
 class Figure
 {
 private:
     const int count_side_none = 0;
-    //int a = 0, b = 0, c = 0, d = 0;
-    //int A = 0, B = 0, C = 0, D = 0;
 public:
     Figure() {}
-   /* 
-   Figure(int a, int b, int c, int A, int B, int C)
-    {
-        this->a = a;
-        this->b = b;
-        this->c = c;
-        this->A = A;
-        this->B = B;
-        this->C = C;
-    }
-    Figure(int a, int b, int c, int d, int A, int B, int C, int D)
-    {
-        this->a = a;
-        this->b = b;
-        this->c = c;
-        this->d = d;
-        this->A = A;
-        this->B = B;
-        this->C = C;
-        this->D = D;
-    }
-    */
     virtual std::string get_name_figure()
     {
         return "";
     }
-    virtual int get_data(char x)
+
+    virtual void print_all_sides()
     {
-        switch (x)
-        {
-        default:  return 0; break;
-        }
-        
+
     }
+
+    virtual void print_all_angles()
+    {
+
+    }
+
     void print()
     {
         std::cout << get_name_figure() << std::endl;
-        std::string result1 = "Стороны: a=" + std::to_string(get_data('a')) + " b=" + std::to_string(get_data('b')) + " c=" + std::to_string(get_data('c'));
-        if (get_data('d') > 0)
-        {
-            result1 = result1 + " d=" + std::to_string(get_data('d'));
-        }
-        std::string result2 = "Углы: A=" + std::to_string(get_data('A')) + " B=" + std::to_string(get_data('B')) + " C=" + std::to_string(get_data('C'));
-        if (get_data('D') > 0)
-        {
-            result2 = result2 + " D=" + std::to_string(get_data('D'));
-        }
-        std::cout << result1 << std::endl;
-        std::cout << result2 << std::endl << std::endl;
+        print_all_sides();
+        print_all_angles();
+        std::cout << "" << std::endl;
     }
 };
 
@@ -109,19 +58,15 @@ public:
     {
         return count_side_triangle;
     }
-    int get_data(char x) override
-    {
-        switch (x)
-        {
-        case 'a': return a; break;
-        case 'b': return b; break;
-        case 'c': return c; break;
-        case 'A': return A; break;
-        case 'B': return B; break;
-        case 'C': return C; break;
-        default:  return 0; break;
-        }
 
+    void print_all_sides() override
+    {
+        std::cout << "Стороны: a=" + std::to_string(a) + " b=" + std::to_string(b) + " c=" + std::to_string(c) << std::endl;
+    }
+
+    void print_all_angles() override
+    {
+        std::cout << "Углы: A=" + std::to_string(A) + " B=" + std::to_string(B) + " C=" + std::to_string(C) << std::endl;
     }
     void print()
     {
@@ -239,21 +184,15 @@ public:
     {
         return count_side_quadrangle;
     }
-    int get_data(char x) override
-    {
-        switch (x)
-        {
-        case 'a': return a; break;
-        case 'b': return b; break;
-        case 'c': return c; break;
-        case 'd': return d; break;
-        case 'A': return A; break;
-        case 'B': return B; break;
-        case 'C': return C; break;
-        case 'D': return D; break;
-        default:  return 0; break;
-        }
 
+    void print_all_sides() override
+    {
+        std::cout << "Стороны: a=" + std::to_string(a) + " b=" + std::to_string(b) + " c=" + std::to_string(c) + " d=" + std::to_string(d) << std::endl;
+    }
+
+    void print_all_angles() override
+    {
+        std::cout << "Углы: A=" + std::to_string(A) + " B=" + std::to_string(B) + " C=" + std::to_string(C) + " D=" + std::to_string(D) << std::endl;
     }
 
     void print()
