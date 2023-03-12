@@ -34,7 +34,7 @@ public:
 
 class Triangle : public Figure
 {
-private:
+protected:
     int a, b, c;
     int A, B, C;
     const int count_side_triangle = 3;
@@ -78,9 +78,9 @@ public:
 
 class Right_triangle : public Triangle
 {
-private:
-    int a, b, c;
-    int A, B, C;
+//private:
+//    int a, b, c;
+//    int A, B, C;
 public:
     Right_triangle() {}
     Right_triangle(int a, int b, int c, int A, int B, int C) : Triangle(a, b, c, A, B, C)
